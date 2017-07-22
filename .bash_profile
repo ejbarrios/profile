@@ -2,7 +2,9 @@ export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
-export EDITOR=`which micro`
+if command -v micro > /dev/null; then
+    export EDITOR=`which micro`
+fi
 
 alias la='ls -GFhla'
 alias ll='ls -GFhl'
@@ -14,10 +16,6 @@ if command -v rbenv > /dev/null; then
     eval "$(rbenv init -)";
 fi
 
-if command -v aws_completer; then
-    eval "$(complete -C `which aws_completer` aws)";
-fi
-
 #pyenv init
 export PATH="$HOME/.pyenv/bin:$PATH"
 if command -v pyenv > /dev/null; then
@@ -25,6 +23,10 @@ if command -v pyenv > /dev/null; then
 	#eval "$(pyenv virtualenv-init -)"
 fi
 
+#aws completer should be initialized after pyenv
+if command -v aws_completer; then
+    eval "$(complete -C `which aws_completer` aws)";
+fi
 
 unset file;
 
