@@ -6,9 +6,9 @@ if command -v micro > /dev/null; then
     export EDITOR=`which micro`
 fi
 
-alias la='ls -GFhla'
-alias ll='ls -GFhl'
-alias ls='ls -GFh'
+alias la='ls -Fhla'
+alias ll='ls -Fhl'
+alias ls='ls -Fh'
 
 #ruby init
 export PATH="$HOME/.rbenv/bin:$PATH"
@@ -21,11 +21,6 @@ export PATH="$HOME/.pyenv/bin:$PATH"
 if command -v pyenv > /dev/null; then
 	eval "$(pyenv init -)"
 	#eval "$(pyenv virtualenv-init -)"
-fi
-
-#aws completer should be initialized after pyenv
-if command -v aws_completer; then
-    eval "$(complete -C `which aws_completer` aws)";
 fi
 
 unset file;
